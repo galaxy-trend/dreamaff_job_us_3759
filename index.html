@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Remote Careers | HigherIncomeJobs</title>
+    
+    <!-- Google Fonts: Poppins & Lato -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* CSS Variables for Consistent Theming */
+        :root {
+            --primary-color: #FF9900; /* Amazon Orange */
+            --primary-dark: #232F3E;  /* Amazon Dark Blue */
+            --secondary-color: #146EB4; /* Amazon Light Blue */
+            --dark-bg: #1a1a1a;
+            --light-bg: #f7f9fc;
+            --text-dark: #333;
+            --text-light: #f0f0f0;
+            --heading-font: 'Poppins', sans-serif;
+            --body-font: 'Lato', sans-serif;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        /* --- Base & Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body-font);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--heading-font);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* --- Header --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-link:hover {
+            opacity: 0.8;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- SVG Logo Styling --- */
+        .logo svg {
+            height: 2.5rem;
+            width: auto;
+            margin-right: 12px;
+            fill: var(--primary-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-dark) 100%);
+            color: var(--text-light);
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--primary-dark);
+            font-family: var(--heading-font);
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(255, 153, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 153, 0, 0.4);
+        }
+        
+        .hero .sub-cta {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* --- As Featured On Section (Updated with Wave) --- */
+        .as-featured-on {
+            padding: 50px 0 0; /* Bottom padding is now handled by the wave */
+            background: var(--light-bg);
+            text-align: center;
+            position: relative; /* Required for positioning the wave */
+        }
+        .as-featured-on .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            padding-bottom: 50px; /* Add padding to keep content above the wave */
+        }
+        .as-featured-on .label {
+            font-family: var(--heading-font);
+            font-weight: 600;
+            color: #888;
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        .featured-text {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #aaa;
+            transition: color 0.3s ease;
+            cursor: default;
+        }
+        .featured-text:hover {
+            color: var(--primary-dark);
+        }
+
+        /* --- Wave SVG --- */
+        .as-featured-on::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px; /* Height of the wave */
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,101.3C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 100px 0;
+        }
+        .section .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--primary-dark);
+        }
+        
+        /* --- Benefits Grid --- */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+        .benefit-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 25px;
+            color: #fff;
+            font-size: 2rem;
+        }
+        .benefit-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        .benefit-card p {
+            color: #666;
+        }
+        
+        /* --- How It Works --- */
+        .how-it-works {
+            background: var(--light-bg);
+        }
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .step {
+            flex-basis: 30%;
+            text-align: center;
+            min-width: 250px;
+        }
+        .step-number {
+            font-family: var(--heading-font);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            opacity: 0.2;
+            margin-bottom: -20px;
+        }
+        .step-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        /* --- Final CTA --- */
+        .final-cta {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--dark-bg) 100%);
+            color: var(--text-light);
+            text-align: center;
+            padding: 100px 0;
+        }
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        .final-cta .cta-button {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        .final-cta .cta-button:hover {
+            background: var(--primary-color);
+            color: var(--primary-dark);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+        .footer-logo {
+            font-family: var(--heading-font);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .footer-logo i {
+            color: var(--primary-color);
+        }
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        .footer-links {
+            margin-top: 20px;
+        }
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin: 0 15px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .section .section-title { font-size: 2.2rem; }
+            .steps { flex-direction: column; align-items: center; }
+            .step { flex-basis: 100%; }
+            .featured-text { font-size: 1.2rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ======== HEADER ======== -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo-link">
+                <div class="logo">
+                    <!-- Inline SVG for the Amazon Logo -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.162c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.653zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                </div>
+                <span>HigherIncomeJobs</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ======== HERO SECTION ======== -->
+        <section class="hero">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <h1>Your New Career Starts Here.</h1>
+                <p>Find legitimate, high-paying remote jobs with Amazon. Enjoy the freedom to work from home.</p>
+                <a href="https://click2daff.com/click?o=3759&p=20593&s1=innaya" class="cta-button">
+                    Find Your Amazon Job
+                </a>
+                <p class="sub-cta">Positions are limited. See if you qualify today.</p>
+            </div>
+        </section>
+
+        <!-- ======== AS FEATURED ON (Wave Background) ======== -->
+        <section class="as-featured-on">
+            <div class="container">
+                <span class="label">As Featured On</span>
+                <span class="featured-text">Forbes</span>
+                <span class="featured-text">The Verge</span>
+                <span class="featured-text">Inc.</span>
+                <span class="featured-text">Entrepreneur</span>
+            </div>
+        </section>
+
+        <!-- ======== BENEFITS SECTION ======== -->
+        <section class="section benefits">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Why Choose a Remote Amazon Career?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="benefit-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <h3>Competitive Salary</h3>
+                        <p>Earn a reliable income with competitive pay rates from $15 to $25+ per hour.</p>
+                    </div>
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="benefit-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <h3>Flexible Hours</h3>
+                        <p>Choose a schedule that fits your life. Full-time and part-time positions available.</p>
+                    </div>
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="benefit-icon"><i class="fas fa-home"></i></div>
+                        <h3>100% Remote</h3>
+                        <p>Work from the comfort of your home. No commute, no office politics, just results.</p>
+                    </div>
+                    <div class="benefit-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Secure & Legitimate</h3>
+                        <p>These are real positions with a world-renowned company, complete with benefits.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== HOW IT WORKS SECTION ======== -->
+        <section class="section how-it-works">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">How It Works</h2>
+                <div class="steps">
+                    <div class="step" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="step-number">1</div>
+                        <div class="step-icon"><i class="fas fa-search"></i></div>
+                        <h3>Browse Openings</h3>
+                        <p>Explore the available remote positions and find one that matches your skills and interests.</p>
+                    </div>
+                    <div class="step" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="step-number">2</div>
+                        <div class="step-icon"><i class="fas fa-file-alt"></i></div>
+                        <h3>Apply Online</h3>
+                        <p>Submit your application through our secure, streamlined portal. It only takes a few minutes.</p>
+                    </div>
+                    <div class="step" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="step-number">3</div>
+                        <div class="step-icon"><i class="fas fa-briefcase"></i></div>
+                        <h3>Get Hired</h3>
+                        <p>If selected, you'll receive an offer and can begin your new career with Amazon from home.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== FINAL CTA SECTION ======== -->
+        <section class="final-cta">
+            <div class="container" data-aos="fade-up">
+                <h2>Ready to Start Your Journey?</h2>
+                <p>Take the first step towards a more flexible and rewarding career.</p>
+                <a href="https://click2daff.com/click?o=3759&p=20593&s1=innaya" class="cta-button">
+                    Apply Now & Secure Your Spot
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ======== FOOTER ======== -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <i class="fab fa-amazon"></i> HigherIncomeJobs
+            </div>
+            <p>&copy; 2023 HigherIncomeJobs. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS (Animate On Scroll) Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+    </script>
+
+</body>
+</html>
